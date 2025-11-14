@@ -31,7 +31,7 @@ public class BookManagementForm extends JFrame {
         titleField = new JTextField();
         authorField = new JTextField();
         yearField = new JTextField();
-            // Setting  inputs width
+            // Setting inputs width
         titleField.setColumns(20);
         authorField.setColumns(20);
         yearField.setColumns(20);
@@ -51,6 +51,7 @@ public class BookManagementForm extends JFrame {
         panel.add(yearField);
 
         panel.add(addButton);
+        panel.add(updateButton);
         panel.add(deleteButton);
         panel.add(viewButton);
 
