@@ -141,26 +141,51 @@ public class BookManagementForm extends JFrame {
     }
 
     // View books
-    private void viewBooks()  {
-        try(Connection conn =DatabaseConnection.getConnection()){
-            String sql = "SELECT * FROM books";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
+    // Improved View books method
+    private void viewBooks() {
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM books");
+             ResultSet rs = stmt.executeQuery()) {
 
-            StringBuilder stringBuilder = new StringBuilder();
-            while(rs.next()){
+            StringBuilder books = new StringBuilder();
+
+            // Check if any books exist
+            if (!rs.isBeforeFirst()) {
+                JOptionPane.showMessageDialog(this,
+                        "No books found in the database",
+                        "Information",
+                        JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            // Build the book list
+            while (rs.next()) {
                 books.append("ID: ").append(rs.getInt("id"))
                         .append(", Title: ").append(rs.getString("title"))
                         .append(", Author: ").append(rs.getString("author"))
-                        .append(",Year: ").append(rs.getInt("year"))
+                        .append(", Year: ").append(rs.getInt("year"))
                         .append("\n");
             }
-            JOptionPane.showMessageDialog(this, books.toString);
 
-        }catch (SQLException ex){
+            // Display in a scrollable dialog for better UX
+            JTextArea textArea = new JTextArea(books.toString());
+            textArea.setEditable(false);
+            JScrollPane scrollPane = new JScrollPane(textArea);
+            scrollPane.setPreferredSize(new java.awt.Dimension(500, 300));
+
+            JOptionPane.showMessageDialog(this,
+                    scrollPane,
+                    "Books List",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (SQLException ex) {
+            // Better error handling
+            JOptionPane.showMessageDialog(this,
+                    "Error retrieving books: " + ex.getMessage(),
+                    "Database Error",
+                    JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
-    }
-
+        }
     }
 
 }
