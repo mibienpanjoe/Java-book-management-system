@@ -7,13 +7,11 @@ A simple Java 8 desktop application for managing a list of books. The UI is buil
 - Key Features
 - Architecture and Project Structure
 - Class Responsibilities
-- UI Flow
 - Database
 - Getting Started
 - Running the Application
 - Troubleshooting
 - Extending the Application
-- License
 
 ---
 
@@ -71,20 +69,6 @@ Typical layout:
 - DatabaseInitializer
   - Creates the required tables if they don’t exist.
   - Seeds the database with sample users and books to get started quickly.
-
----
-
-## UI Flow
-1. Launch application.
-2. Login screen appears; user enters credentials.
-3. If authentication passes:
-   - The book management screen opens.
-   - Users can:
-     - Add: Insert a new book with title, author, and year.
-     - Update: Modify author/year for an existing title.
-     - Delete: Remove a book by title (after confirmation).
-     - View: List all books in a formatted table-like view.
-4. Dialogs provide feedback after each operation.
 
 ---
 
@@ -160,17 +144,13 @@ Command line (optional, if you prefer):
   - Hash and salt passwords instead of storing them in plain text.
 - Use IDs for edits/deletes:
   - Replace title-based updates/deletes with ID-based operations via a selectable list/table.
-- Introduce a DAO/service layer:
-  - Separate UI from data access and business logic to improve testability and maintainability.
 - Enhance the UI:
   - Use JTable for listing books with sorting and selection.
   - Add input masks or spinners for year input.
-- Validation and i18n:
-  - Centralize validation logic and add localized messages.
-- Testing:
-  - Add unit tests and integration tests for database interactions.
 
 ---
 
 ## License
 This project is provided as-is for educational purposes. Adapt and extend as needed for your use case.
+
+#  Mj
