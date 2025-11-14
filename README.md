@@ -1,4 +1,4 @@
-# Book Management system
+# Book Management System
 
 A simple Java  desktop application for managing a list of books. The UI is built with Swing and the data is persisted locally using SQLite. The app supports user login and provides CRUD operations for books.
 
